@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Max and Min Temperature Display</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      code {
+        display: block;
+        overflow-x: auto;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+ 
+    <center>
+
+    
+    <h3>Übermorgen:</h3> 
+    <bold>Max: </bold><span id="threemax"></span></bold>°C,
+    Min:<span id="threemin"></span>°C,
+    Regen: </bold><span id="rainthree"></span>mm
+</center>
+    <script>
+fetch('https://api.open-meteo.com/v1/forecast?latitude=47.87&longitude=16.38&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin')
+  .then(response => response.json())
+  .then(data => {
+
+    const Thirddaymaxtemp = data.daily.temperature_2m_max[2];
+
+    const threemin = data.daily.temperature_2m_min[2];
+
+    const rainthree = data.daily.precipitation_sum[2];
+
+
+
+    document.getElementById("threemax").textContent = Thirddaymaxtemp;
+
+    document.getElementById("threemin").textContent = threemin;
+
+    document.getElementById("rainthree").textContent = rainthree;
+})
+  .catch(error => console.log(error));
+
+    </script>
+  </body>
+</html>
