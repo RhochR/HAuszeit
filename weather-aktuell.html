@@ -1,11 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<html>
+  <head>
+    <title>Max and Min Temperature Display</title>
+    <meta name="viewport" content="width=100, height=30">
+    <style>
+      code {
+        display: block;
+        overflow-x: auto;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+
+<center>    
+    <h2>Aktuell</h2>
+    <h2>Temperatur:</h2>
+    <h1 id="temp"></h1>
+    <span>Wind:</span>
+    <span id="wind"></span>
+    <span>KM/h</span>
+
     
-</body>
+</center>
+
+
+    <script>
+fetch('https://api.open-meteo.com/v1/forecast?latitude=47.8656&longitude=16.3786&hourly=temperature_2m,precipitation&current_weather=true&timezone=Europe%2FBerlin')
+  .then(response => response.json())
+  .then(data => {
+    const temp_pure = data.current_weather.temperature;
+    const temp = temp_pure + " °C"
+    const wind = data.current_weather.windspeed;
+ 
+    document.getElementById("temp").textContent = temp;  
+
+    
+ 
+    document.getElementById("wind").textContent = wind;
+    
+})
+  .catch(error => console.log(error));
+
+    </script>
+  </body>
 </html>
