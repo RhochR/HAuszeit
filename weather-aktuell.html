@@ -1,11 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<html>
+  <head>
+    <title>Max and Min Temperature Display</title>
+    <meta name="viewport" content="width=100, height=30">
+    <style>
+      code {
+        display: block;
+        overflow-x: auto;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+
+<center>    
+    <p><h3>Heute:</h3>
+    <bold>Max:</bold> <span id="onemax"></span>°C,</bold>
+    Min: </bold><span id="onemin"></span>°C,
+    Regen: </bold><span id="rainone"></span>mm
+</center>
+
+
+    <script>
+fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true&timezone=Europe%2FBerlin&forecast_days=1')
+  .then(response => response.json())
+  .then(data => {
+    const temp = data.current_weather.temperature;
+
+    const onemin = data.daily.temperature_2m_min[0];
+ 
+    const rainone = data.daily.precipitation_sum[0];
+
+
+
+    document.getElementById("onemax").textContent = Firstdaymaxtemp;  
+
+    document.getElementById("onemin").textContent = onemin;
+ 
+    document.getElementById("rainone").textContent = rainone;
     
-</body>
+})
+  .catch(error => console.log(error));
+
+    </script>
+  </body>
 </html>
