@@ -21,18 +21,20 @@
     </center>
 
     <script>
-      fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true&timezone=Europe%2FBerlin&forecast_days=1')
-        .then(response => response.json())
-        .then(data => {
-          const temp = data.current_weather.temperature_2m[0];
-          const onemin = data.daily.temperature_2m_min[0];
-          const rainone = data.daily.precipitation_sum[0];
+fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true&timezone=Europe%2FBerlin&forecast_days=1')
+  .then(response => response.json())
+  .then(data => {
+    const temp = data.current_weather.temperature;
+    const onemin = data.daily.temperature_2m_min[0];
+    const rainone = data.daily.precipitation_sum[0];
 
-          document.getElementById("temp").textContent = `Temperature: ${temp}°C`;
-          document.getElementById("onemin").textContent = `Min Temperature: ${onemin}°C`;
-          document.getElementById("rainone").textContent = `Rainfall: ${rainone} mm`;
-        })
-        .catch(error => console.log(error));
+    document.getElementById("temp").textContent = `Temperature: ${temp}°C`;
+    document.getElementById("onemin").textContent = `Min Temperature: ${onemin}°C`;
+    document.getElementById("rainone").textContent = `Rainfall: ${rainone} mm`;
+  })
+  .catch(error => console.log(error));
+
+
     </script>
   </body>
 </html>
