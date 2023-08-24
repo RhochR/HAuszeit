@@ -25,8 +25,9 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&cur
   .then(response => response.json())
   .then(data => {
     const temp = data.current_weather.temperature;
-    const onemin = data.daily.temperature_2m_min[0];
-    const rainone = data.daily.precipitation_sum[0];
+
+
+    document.getElementById("temp").textContent = temp;
 
   })
   .catch(error => console.log(error));
