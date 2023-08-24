@@ -10,22 +10,39 @@
         white-space: pre-wrap;
       }
       .temp {
-          font-size: x-large;
+          font-size: 55px;
+          float: left;
+          
       }
+
       img {
-        float:none;
-        text-align:center;
+        width: 130px;
+        position: relative;
+        right offset: 8px;
+        float: left;
+    
+        
       }
+      .wind {
+        position: absolute;
+        top: 130px;
+        left:140px;
+        font-size: 20px;
+        
+        color: rgb(70, 70, 70);
+      }
+
+
     </style>
   </head>
   <body>
 
-    <center>    
-      <h1>Aktuell:</h1>
-      <span id="temp" class="temp"></span>
-    <img id="icon" class="icon">
       
-    </center>
+      <h1>Aktuell:</h1>
+     <img id="icon" class="icon">  <span id="temp" class="temp"></span> <span class="wind" id="wind">Windspeed</span>
+    
+      
+   
 
     <script>
 var url
@@ -38,7 +55,7 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&cur
     const code_ = data.current_weather.weathercode;
     const code = JSON.stringify(code_);
     const isday =data.current_weather.isday
-
+    const Wind = data.current_weather.windspeed;
     console.log(code)
     if(code == 0 || code == 1) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/clear-day.svg"};
     if(code == 0 && isday == 0) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/clear-night.svg"}
@@ -57,8 +74,9 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&cur
     if(code == 75 || code == 77) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/snowy-3.svg"};
     if(code == 95) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/isolated-thunderstorms.svg"};
     if(code == 96 || code == 99) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/thunderstorms.svg"};
-    document.getElementById("temp").textContent = temp;
+    document.getElementById("temp").textContent = `${temp} °C`;
     document.getElementById("icon").src= url;
+    document.getElementById("wind").textContent= `Wind: ${Wind}KM/H`
   })
   .catch(error => console.log(error));
 
