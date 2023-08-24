@@ -9,15 +9,22 @@
         overflow-x: auto;
         white-space: pre-wrap;
       }
+      .temp {
+          font-size: x-large;
+      }
+      img {
+        float:none;
+        text-align:center;
+      }
     </style>
   </head>
   <body>
 
     <center>    
       <h1>Aktuell:</h1>
-      <img id="icon">
-      <span id="temp"></span>
-
+      <span id="temp" class="temp"></span>
+    <img id="icon" class="icon">
+      
     </center>
 
     <script>
@@ -26,12 +33,16 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&cur
   .then(response => response.json())
   .then(data => {
     console.log("fetched data!")
-    
+
     const temp = data.current_weather.temperature;
     const code_ = data.current_weather.weathercode;
     const code = JSON.stringify(code_);
+    const isday =data.current_weather.isday
+
     console.log(code)
     if(code == 0 || code == 1) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/clear-day.svg"};
+    if(code == 0 && isday == 0) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/clear-night.svg"}
+    if(code == 1 && isday == 0) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/clear-night.svg"}
     if(code == 2 || code == 3) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/cloudy-1-day.svg"};
     if(code == 45) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/fog.svg"};
     if(code == 48) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/fog-day.svg"};
