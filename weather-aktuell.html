@@ -9,16 +9,39 @@
         overflow-x: auto;
         white-space: pre-wrap;
       }
+      .temp {
+          font-size: 55px;
+          float: left;
+          
+      }
+
+      img {
+        width: 130px;
+        position: relative;
+        right offset: 8px;
+        float: left;
+    
+        
+      }
+      .wind {
+        position: absolute;
+        top: 60px;
+        left:140px;
+        font-size: 20px;
+        color: rgb(70, 70, 70);
+      }
+
+
     </style>
   </head>
   <body>
 
-    <center>    
-      <h1>Aktuell:</h1>
-      <span id="temp"></span>
-      <span id="onemin"></span>
-      <span id="rainone"></span>
-    </center>
+      
+     
+     <img id="icon" class="icon">  <span id="temp" class="temp"></span> <span class="wind" id="wind">Windspeed</span>
+    
+      
+   
 
     <script>
 var url
