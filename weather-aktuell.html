@@ -45,7 +45,7 @@
 
     <script>
 var url
-fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true&timezone=Europe%2FBerlin&forecast_days=1')
+fetch('https://api.open-meteo.com/v1/forecast?latitude=47.8656&longitude=16.3786&current_weather=true&timezone=Europe%2FBerlin&forecast_days=1')
   .then(response => response.json())
   .then(data => {
     console.log("fetched data!")
@@ -53,7 +53,7 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&cur
     const temp = data.current_weather.temperature;
     const code_ = data.current_weather.weathercode;
     const code = JSON.stringify(code_);
-    const isday =data.current_weather.isday
+    const isday =data.current_weather.isday;
     const Wind = data.current_weather.windspeed;
     console.log(code)
     if(code == 0 || code == 1) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/clear-day.svg"};
