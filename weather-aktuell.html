@@ -9,16 +9,18 @@
         overflow-x: auto;
         white-space: pre-wrap;
       }
+      .tempaktuell{
+          font-size: 60px;
+      }
     </style>
   </head>
   <body>
 
-    <center>    
+       
       <h1>Aktuell:</h1>
-      <span id="temp"></span>
-      <span id="onemin"></span>
-      <span id="rainone"></span>
-    </center>
+      <span class="tempaktuell" id="temp"></span>
+
+    
 
     <script>
 fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true&timezone=Europe%2FBerlin&forecast_days=1')
