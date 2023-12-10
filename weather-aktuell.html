@@ -56,11 +56,9 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=47.8656&longitude=16.3786
     const isday =data.current_weather.isday;
     const Wind = data.current_weather.windspeed;
     console.log(code)
-    if(code == 0 || code == 1 || code == 2) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/clear-day.svg"};
-    if(code == 0 && isday == 0) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/clear-night.svg"}
-    if(code == 1 && isday == 0) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/clear-night.svg"}
-    if(code == 2 && isday == 0) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/cloudy-2-night.svg"}
-    if(code == 3) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/cloudy-1-day.svg"};
+    if(code == 0) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/clear-day.svg"};
+    if(code == 1 || code == 2) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/cloudy-2-day.svg"};
+    if(code == 3) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/cloudy.svg"};
     if(code == 45) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/fog.svg"};
     if(code == 48) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/fog-day.svg"};
     if(code == 51 || code == 53 || code == 55) {var url = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated/rainy-1-day.svg"};
