@@ -53,6 +53,8 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=47.8656&longitude=16.3786
     const temp = data.current_weather.temperature;
     const code_ = data.current_weather.weathercode;
     const code = JSON.stringify(code_);
+    //Test the system:
+    //const code = 80;
     const isday =data.current_weather.isday;
     const Wind = data.current_weather.windspeed;
     console.log(code)
