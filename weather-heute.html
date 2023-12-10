@@ -1,47 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Max and Min Temperature Display</title>
-    <meta name="viewport" content="width=100, height=30">
-    <style>
-      code {
-        display: block;
-        overflow-x: auto;
-        white-space: pre-wrap;
-      }
-    </style>
-  </head>
-  <body>
+<head>
+  <title>Max and Min Temperature Display</title>
+  <meta name="viewport" content="width=100, height=30">
+  <style>
+    code {
+      display: block;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <center>
+    <p>
+      <h3>Heute:</h3>
+      <b>Max:</b> <span id="todayMaxTemp"></span>&deg;C,
+      <b>Min:</b> <span id="todayMinTemp"></span>&deg;C,
+      <b>Regen:</b> <span id="todayRain"></span>mm
+    </p>
+  </center>
 
-<center>    
-    <p><h3>Heute:</h3>
-    <bold>Max:</bold> <span id="onemax"></span>°C,</bold>
-    Min: </bold><span id="onemin"></span>°C,
-    Regen: </bold><span id="rainone"></span>mm
-</center>
+  <script>
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=47.87&longitude=16.38&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe/Berlin')
+      .then(response => response.json())
+      .then(data => {
+        const todayMaxTemp = data.daily.temperature_2m_max[0];
+        const todayMinTemp = data.daily.temperature_2m_min[0];
+        const todayRain = data.daily.precipitation_sum[0];
 
-
-    <script>
-fetch('https://api.open-meteo.com/v1/forecast?latitude=47.87&longitude=16.38&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlinpi.open-meteo.com/v1/forecast?latitude=47.87&longitude=16.38&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin')
-  .then(response => response.json())
-  .then(data => {
-    const Firstdaymaxtemp = data.daily.temperature_2m_max[0];
-
-    const onemin = data.daily.temperature_2m_min[0];
- 
-    const rainone = data.daily.precipitation_sum[0];
-
-
-
-    document.getElementById("onemax").textContent = Firstdaymaxtemp;  
-
-    document.getElementById("onemin").textContent = onemin;
- 
-    document.getElementById("rainone").textContent = rainone;
-    
-})
-  .catch(error => console.log(error));
-
-    </script>
-  </body>
+        document.getElementById('todayMaxTemp').textContent = todayMaxTemp;
+        document.getElementById('todayMinTemp').textContent = todayMinTemp;
+        document.getElementById('todayRain').textContent = todayRain;
+      })
+      .catch(error => console.log(error));
+  </script>
+</body>
 </html>
